@@ -2,8 +2,8 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-// import { axiosWithAuth } from "../helpers/axiosWithAuth";
 import { Redirect } from "react-router-dom";
+import Loader from "react-loader-spinner";
 
 function Login({ touched, errors }) {
   const token = localStorage.getItem("token");
@@ -12,7 +12,9 @@ function Login({ touched, errors }) {
     return <Redirect to="/friends" />;
   }
 
-  return (
+  return isSubmitting ? (
+    <Loader type="Puff" color="#00BFFF" height="100" width="100" />
+  ) : (
     <Form>
       <label>Username</label>
       <div className="form-group">
@@ -59,7 +61,8 @@ export default withFormik({
       .post(url, values)
       .then(res => {
         localStorage.setItem("token", res.data.payload);
-      })
+    //     formikBag.props.history.push("/friends");
+    //   })
       .catch(e => {
         console.log(e.response.data);
       });
