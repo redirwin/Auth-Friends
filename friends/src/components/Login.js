@@ -58,7 +58,7 @@ export default withFormik({
     axios
       .post(url, values)
       .then(res => {
-        console.log(res);
+        localStorage.setItem("token", res.data.payload);
       })
       .catch(e => {
         console.log(e.response.data);
