@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import PrivateRoute from "./PrivateRoute";
+import { Route, Link, Redirect } from "react-router-dom";
+// import PrivateRoute from "./PrivateRoute";
 
 import Login from "./components/Login";
 
@@ -15,7 +15,17 @@ function App() {
       </nav>
       <main>
         <Route exact path="/login" component={Login} />
-        <Route exact path="/friends" component={Login} />
+        <Route
+          exact
+          path="/friends"
+          render={props => {
+            const token = localStorage.getItem("token");
+            if (!token) {
+              return <Redirect to="/login" />;
+            }
+            return <Friends {...props} />;
+          }}
+        />
       </main>
     </div>
   );

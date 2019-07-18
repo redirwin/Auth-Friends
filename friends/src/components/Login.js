@@ -61,8 +61,8 @@ export default withFormik({
       .post(url, values)
       .then(res => {
         localStorage.setItem("token", res.data.payload);
-    //     formikBag.props.history.push("/friends");
-    //   })
+        formikBag.props.history.push("/friends");
+      })
       .catch(e => {
         console.log(e.response.data);
       });
