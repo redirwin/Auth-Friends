@@ -1,8 +1,9 @@
 import React from "react";
-import { Route, Link, Redirect } from "react-router-dom";
-// import PrivateRoute from "./PrivateRoute";
+import { Route, Link } from "react-router-dom";
+import PrivateRoute from "./helpers/PrivateRoute";
 
 import Login from "./components/Login";
+import Friends from "./components/Friends";
 
 import "./App.css";
 
@@ -11,21 +12,17 @@ function App() {
     <div>
       <nav>
         <Link to="/login">Login</Link>
-        <Link to="/friends">Manage Friends</Link>
+        <Link to="/protected/friends">Manage Friends</Link>
       </nav>
       <main>
-        <Route exact path="/login" component={Login} />
         <Route
           exact
-          path="/friends"
+          path="/login"
           render={props => {
-            const token = localStorage.getItem("token");
-            if (!token) {
-              return <Redirect to="/login" />;
-            }
-            return <Friends {...props} />;
+            return <Login {...props} />;
           }}
         />
+        <PrivateRoute exact path="/protected/friends" component={Friends} />
       </main>
     </div>
   );

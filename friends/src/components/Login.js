@@ -9,12 +9,10 @@ function Login({ touched, errors }) {
   const token = localStorage.getItem("token");
 
   if (token) {
-    return <Redirect to="/friends" />;
+    return <Redirect to="/protected/friends" />;
   }
 
-  return isSubmitting ? (
-    <Loader type="Puff" color="#00BFFF" height="100" width="100" />
-  ) : (
+  return (
     <Form>
       <label>Username</label>
       <div className="form-group">
@@ -55,13 +53,13 @@ export default withFormik({
     password: Yup.string().min(8).required
   }),
 
-  handleSubmit(values, formkBag) {
+  handleSubmit(values, formikBag) {
     const url = "http://localhost:5000/api/login";
     axios
       .post(url, values)
       .then(res => {
         localStorage.setItem("token", res.data.payload);
-        formikBag.props.history.push("/friends");
+        formikBag.props.history.push("/protected/friends");
       })
       .catch(e => {
         console.log(e.response.data);
