@@ -5,7 +5,17 @@ import PrivateRoute from "./PrivateRoute";
 import "./App.css";
 
 function App() {
-  return <div className="App">My App</div>;
+  return (
+    <div>
+      <nav>
+        <Link to="/login">Login</Link>
+        <Link to="/friends">Manage Friends</Link>
+      </nav>
+      <main>
+        <Route exact path="/login" component={Login} />
+      </main>
+    </div>
+  );
 }
 
 export default App;
