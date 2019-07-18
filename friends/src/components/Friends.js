@@ -4,12 +4,13 @@ import axiosWithAuth from "../helpers/axiosWithAuth";
 
 export default function Friends() {
   const [friends, updateFriends] = useState([]);
+  console.log(friends);
 
   useEffect(() => {
     axiosWithAuth()
       .get("/api/friends")
       .then(res => {
-        console.log(res);
+        updateFriends(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -24,7 +25,7 @@ export default function Friends() {
       </section>
       <section className="show-friends">
         <h2>Friends</h2>
-        <ListFriends />
+        <ListFriends friends={friends} />
       </section>
     </div>
   );
