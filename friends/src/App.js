@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
+
+import Login from "./components/Login";
 
 import "./App.css";
 
@@ -9,7 +11,6 @@ function App() {
     <div>
       <nav>
         <Link to="/login">Login</Link>
-        <Link to="/friends">Manage Friends</Link>
       </nav>
       <main>
         <Route exact path="/login" component={Login} />
