@@ -20,7 +20,7 @@ function Login({ touched, errors }) {
           className="input"
           name="username"
           type="username"
-          autocomplete="off"
+          autoComplete="off"
         />
         <p className="error-message">{touched.username && errors.username}</p>
       </div>

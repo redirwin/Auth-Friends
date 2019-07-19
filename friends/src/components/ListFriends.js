@@ -5,7 +5,7 @@ export default function ListFriends(props) {
     <>
       {props.friends.map(friend => {
         return (
-          <div key={friend.id} className="friend-card">
+          <div key={friend.id} className="friend-card-wrapper">
             <span>{friend.name}</span>
             <span>{friend.age}</span>
             <span>{friend.email}</span>
