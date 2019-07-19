@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ListFriends from "./ListFriends";
+import AddFriends from "./AddFriends";
 import axiosWithAuth from "../helpers/axiosWithAuth";
 
 export default function Friends() {
@@ -21,7 +22,7 @@ export default function Friends() {
     <div className="friends-page-wrapper">
       <section className="add-friends">
         <h2>Add Friends</h2>
-        <form>This is the add friend form...</form>
+        <AddFriends />
       </section>
       <section className="show-friends">
         <h2>Friends</h2>

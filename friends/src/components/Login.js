@@ -3,7 +3,7 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-import Loader from "react-loader-spinner";
+// import Loader from "react-loader-spinner";
 
 function Login({ touched, errors }) {
   const token = localStorage.getItem("token");

@@ -1,13 +1,23 @@
 import React from "react";
-import FriendCard from "./FriendCard";
 
 export default function ListFriends(props) {
-  const token = localStorage.getItem("token");
   return (
-    <div>
+    <>
       {props.friends.map(friend => {
-        return <FriendCard friend={friend} />;
+        return (
+          <div key={friend.id} className="friend-card">
+            <span>{friend.name}</span>
+            <span>{friend.age}</span>
+            <span>{friend.email}</span>
+            <span>
+              <button>Edit</button>
+            </span>
+            <span>
+              <button>Delete</button>
+            </span>
+          </div>
+        );
       })}
-    </div>
+    </>
   );
 }
