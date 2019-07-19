@@ -11,13 +11,15 @@ function App() {
   return (
     <div>
       <nav>
-        <Link to="/login">Login</Link>
-        <Link to="/protected/friends">Manage Friends</Link>
+        <div>
+          <Link to="/protected/friends">Manage Friends</Link>
+          <Link to="/">Login</Link>
+        </div>
       </nav>
       <main>
         <Route
           exact
-          path="/login"
+          path="/"
           render={props => {
             return <Login {...props} />;
           }}
