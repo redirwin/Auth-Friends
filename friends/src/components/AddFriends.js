@@ -17,7 +17,6 @@ function AddFriend({ touched, errors }) {
             placeholder="Name"
             autoComplete="off"
           />
-          <p className="error-message">{touched.name && errors.name}</p>
         </div>
         <div className="form-group">
           <Field
@@ -27,7 +26,6 @@ function AddFriend({ touched, errors }) {
             placeholder="Age"
             autoComplete="off"
           />
-          <p className="error-message">{touched.age && errors.age}</p>
         </div>
         <div className="form-group">
           <Field
@@ -37,15 +35,16 @@ function AddFriend({ touched, errors }) {
             placeholder="Email"
             autoComplete="off"
           />
-          <p className="error-message">{touched.email && errors.email}</p>
-        </div>
-        <div className="form-group">
-          <button className="btn">Clear</button>
         </div>
         <div className="form-group">
           <button className="btn">Submit</button>
         </div>
       </Form>
+      <div className="error-group">
+        <div className="error-message">{touched.name && errors.name}</div>
+        <div className="error-message" />
+        <div className="error-message">{touched.email && errors.email}</div>
+      </div>
     </AddFriendsWrapper>
   );
 }
@@ -60,10 +59,12 @@ export default withFormik({
 
   validationSchema: Yup.object().shape({
     name: Yup.string()
-      .min(2)
-      .required(),
-    age: Yup.string().min(1).required,
-    email: Yup.string().min(3).required
+      .required("Name is required.")
+      .min(2, "Name is required."),
+    age: Yup.string(),
+    email: Yup.string()
+      .required("Email is required.")
+      .email("Email is not valid.")
   }),
 
   handleSubmit(values, formikBag) {
@@ -73,7 +74,7 @@ export default withFormik({
       .then(res => {
         formikBag.props.updateFriends(res.data);
         formikBag.resetForm();
-        formikBag.setSubmitting(<div>Submitting...</div>);
+        formikBag.setSubmitting();
       })
       .catch(err => {
         console.log(err);
@@ -82,7 +83,12 @@ export default withFormik({
 })(AddFriend);
 
 const AddFriendsWrapper = styled.div`
-  div {
-    display: inline-block;
+  /* form {
+    display: flex;
+    justify-content: space-between;
   }
+
+  .error-group {
+    display: flex;
+  } */
 `;

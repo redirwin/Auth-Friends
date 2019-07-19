@@ -29,7 +29,7 @@ export default function Friends() {
       <section className="show-friends">
         <h2>Friends List</h2>
         {friends ? (
-          <ListFriends friends={friends} />
+          <ListFriends friends={friends} updateFriends={updateFriends} />
         ) : (
           <div className="loader">
             <Loader type="Puff" color="blue" height={80} width={80} />
